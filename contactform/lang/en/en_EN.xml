@@ -1,0 +1,35 @@
+<localestring id="PLUGIN_CONTACTFORM">
+    <t>Contactform</t>
+</localestring>
+
+<localestring id="PLUGIN_CONTACTFORM_CONTACTFORMS">
+    <t>Contactforms</t>
+</localestring>
+
+<localestring id="PLUGIN_CONTACTFORM_CREATE">
+    <t>Create Contactform</t>
+</localestring>
+
+<localestring id="PLUGIN_CONTACTFORM_EDIT">
+    <t>Edit Contactform</t>
+</localestring>
+
+<localestring id="PLUGIN_CONTACTFORM_EMAIL">
+    <t>Email</t>
+</localestring>
+
+<localestring id="PLUGIN_CONTACTFORM_REALLY_REMOVE">
+    <t>Do you really want to remove this contactform?</t>
+</localestring>
+
+<localestring id="PLUGIN_CONTACTFORM_REALLY_REMOVE_SELECTED">
+    <t>Do you really want to remove the selected contactforms?</t>
+</localestring>
+
+<localestring id="PLUGIN_CONTACTFORM_VARIABLE_HINT">
+    <t>The variable of this plugin is {%PLUGIN_VARIABLE%}</t>
+</localestring>
+
+<localestring id="PLUGIN_CONTACTFORM_CREATE_NEW">
+    <t>Create new Contactform</t>
+</localestring>

@@ -11,6 +11,9 @@ $plugin_meta["author_email"] = 'immanuel.peratoner@gmail.com';
 $plugin_meta["year"] = '2009';
 $plugin_meta["license"] = 'GNU GPLv3';
 
+$plugin_meta["locale_enabled"] = true;
+$plugin_meta["locale_directory"] = 'lang';
+
 $plugin_meta["variable"] = 'CONTACTFORM';
 $plugin_meta["input_enabled"] = true;
 

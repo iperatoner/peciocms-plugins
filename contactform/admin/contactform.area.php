@@ -10,7 +10,7 @@ define('AREA', ADMIN_MAIN_FILE . '?t=plugin&amp;' . ADMIN_AREA_VAR . '=' . $_GET
 
 /* main area data */
 $area = array();
-$area["title"] = 'Contactforms';
+$area["title"] = $pec_localization->get('PLUGIN_CONTACTFORM_CONTACTFORMS');
 $area["permission_name"] = 'permission_plugins';
 $area["head_data"] = '';
 $area["messages"] = '';
@@ -30,7 +30,7 @@ function do_actions() {
         PecMessageHandler::exists($_GET['message'])) {  
                     
         $messages .= PecMessageHandler::get($_GET['message'], array(
-            '{%CONTENT_TYPE%}' => 'contactform',
+            '{%CONTENT_TYPE%}' => $pec_localization->get('PLUGIN_CONTACTFORM'),
             '{%NAME%}' => $_GET['message_data'],
             '{%ID%}' => $_GET['message_data']
         ));
@@ -45,7 +45,7 @@ function do_actions() {
             $contactform->save();
             
             $messages .= PecMessageHandler::get('content_created', array(
-                '{%CONTENT_TYPE%}' => 'contactform',
+                '{%CONTENT_TYPE%}' => $pec_localization->get('PLUGIN_CONTACTFORM'),
                 '{%NAME%}' => $contactform->get_email()
             ));
         }
@@ -60,13 +60,13 @@ function do_actions() {
                 $contactform->save();
                 
                 $messages .= PecMessageHandler::get('content_edited', array(
-                    '{%CONTENT_TYPE%}' => 'contactform',
+                    '{%CONTENT_TYPE%}' => $pec_localization->get('PLUGIN_CONTACTFORM'),
                     '{%NAME%}' => $contactform->get_email()
                 ));
             }
             else {
                 $messages .= PecMessageHandler::get('content_not_found_id', array(
-                    '{%CONTENT_TYPE%}' => 'contactform',
+                    '{%CONTENT_TYPE%}' => $pec_localization->get('PLUGIN_CONTACTFORM'),
                     '{%ID%}' => ''
                 ));
             }
@@ -80,13 +80,13 @@ function do_actions() {
                 $contactform->remove();
                 
                 $messages .= PecMessageHandler::get('content_removed', array(
-                    '{%CONTENT_TYPE%}' => 'contactform',
+                    '{%CONTENT_TYPE%}' => $pec_localization->get('PLUGIN_CONTACTFORM'),
                     '{%NAME%}' => $contactform_email
                 ));
             }
             else {                
                 $messages .= PecMessageHandler::get('content_not_found_id', array(
-                    '{%CONTENT_TYPE%}' => 'contactform',
+                    '{%CONTENT_TYPE%}' => $pec_localization->get('PLUGIN_CONTACTFORM'),
                     '{%ID%}' => $_GET['id']
                 ));
             }
@@ -105,13 +105,13 @@ function do_actions() {
                     }
                               
                     $messages .= PecMessageHandler::get('content_removed_multiple', array(
-                        '{%CONTENT_TYPE%}' => 'contactforms',
+                        '{%CONTENT_TYPE%}' => $pec_localization->get('PLUGIN_CONTACTFORM_CONTACTFORMS'),
                         '{%NAME%}' => ''
                     ));
                 }
                 else {
                     $messages .= PecMessageHandler::get('content_not_selected', array(
-                        '{%CONTENT_TYPE%}' => 'contactforms',
+                        '{%CONTENT_TYPE%}' => $pec_localization->get('PLUGIN_CONTACTFORM_CONTACTFORMS'),
                         '{%NAME%}' => ''
                     ));
                 }
@@ -130,12 +130,12 @@ function view_edit() {
     global $pec_localization;
     
     $area_data = array();    
-    $area_data['title'] = 'Contactforms';
+    $area_data['title'] = $pec_localization->get('PLUGIN_CONTACTFORM_CONTACTFORMS');
     
     if (isset($_GET['id'])) {
         if (Contactform::exists('id', $_GET['id'])) {
             $contactform = Contactform::load('id', $_GET['id']);
-            $area_data['title'] .= ' &raquo; Edit Contactform &raquo; ' . $contactform->get_email();
+            $area_data['title'] .= ' &raquo; ' . $pec_localization->get('PLUGIN_CONTACTFORM_EDIT') . ' &raquo; ' . $contactform->get_email();
             
             $action = 'save';
             $id_query_var = '&amp;id=' . $_GET['id'];
@@ -147,7 +147,7 @@ function view_edit() {
     else {
         // create an empty contactform
         $contactform = new Contactform(NULL_ID, '');
-        $area_data['title'] .= ' &raquo; Create Contactform';
+        $area_data['title'] .= ' &raquo; ' . $pec_localization->get('PLUGIN_CONTACTFORM_CREATE');
         
         $action = 'create';
         $id_query_var = '';
@@ -155,7 +155,7 @@ function view_edit() {
     
     $area_data['content'] = '
         <form method="post" action="' . AREA . '&amp;view=default&amp;action=' . $action . $id_query_var . '" id="contactforms_edit_form" />
-            <h3>Email:</h3>
+            <h3>' . $pec_localization->get('PLUGIN_CONTACTFORM_EMAIL') . ':</h3>
             <input type="text" size="75" name="contactform_email" id="contactform_email" value="' . $contactform->get_email() . '" />
             <br /><br />
             
@@ -171,23 +171,30 @@ function view_default() {
     global $pec_localization, $plugin;
   
     $area_data = array();
-    $area_data['title'] = 'Contactforms';
+    $area_data['title'] = $pec_localization->get('PLUGIN_CONTACTFORM_CONTACTFORMS');
 
     $contactforms = Contactform::load();
 
     $area_data['content'] = '
-        <form method="post" action="' . AREA . '&amp;view=default&amp;action=default_view_actions" id="contactforms_main_form" onsubmit="return confirm(\'Do you really want to remove the selected contactforms?\');" />
-            <input type="button" value="Create new Contactform" onclick="location.href=\'' . AREA . '&amp;view=edit\'"/>
+        <form method="post" action="' . AREA . '&amp;view=default&amp;action=default_view_actions" id="contactforms_main_form" onsubmit="return confirm(\'' . $pec_localization->get('PLUGIN_CONTACTFORM_REALLY_REMOVE_SELECTED') . '\');" />
+            <input type="button" value="' . $pec_localization->get('PLUGIN_CONTACTFORM_CREATE_NEW') . '" onclick="location.href=\'' . AREA . '&amp;view=edit\'"/>
             <input type="submit" name="remove_contactforms" value="' . $pec_localization->get('BUTTON_REMOVE') . '" /><br /><br />
 
-            The variable of this plugin is {%' . $plugin->get_property('variable') . '-(ID)%}<br /><br /><br />
+
+            ' . str_replace(
+                    '{%PLUGIN_VARIABLE%}' , 
+                    '{%' . $plugin->get_property('variable'). '-(ID)%}', 
+                    $pec_localization->get('PLUGIN_CONTACTFORM_VARIABLE_HINT')
+                ) . '
+
+            <br /><br /><br />
       
 
             <table class="data_table" cellspacing="0">
                 <thead>
                     <tr class="head_row">
                         <th class="check_column"><input type="checkbox" onclick="checkbox_mark_all(\'remove_box\', \'contactforms_main_form\', this);" /></th>
-                        <th class="long_column">Email</th>
+                        <th class="long_column">' . $pec_localization->get('PLUGIN_CONTACTFORM_EMAIL') . '</th>
                         <th class="short_column">ID</th>
                     <tr>
                 </thead>
@@ -202,7 +209,7 @@ function view_default() {
                             <a href="' . AREA . '&amp;view=edit&amp;id=' . $cf->get_id() . '"><span class="main_text">' . $cf->get_email() . '</span></a>
                             <div class="row_actions">
                                 <a href="' . AREA . '&amp;view=edit&amp;id=' . $cf->get_id() . '">' . $pec_localization->get('ACTION_EDIT') . '</a> - 
-                                <a href="javascript:ask(\'Do you really want ro remove this contactform?\', \'' . AREA . '&amp;view=default&amp;action=remove&amp;id=' . $cf->get_id() . '\');">' . $pec_localization->get('ACTION_REMOVE') . '</a>
+                                <a href="javascript:ask(\'' . $pec_localization->get('PLUGIN_CONTACTFORM_REALLY_REMOVE') . '\', \'' . AREA . '&amp;view=default&amp;action=remove&amp;id=' . $cf->get_id() . '\');">' . $pec_localization->get('ACTION_REMOVE') . '</a>
                             </div>
                         </td>
                         <td class="normal_column">' . $cf->get_id() . '</td>
