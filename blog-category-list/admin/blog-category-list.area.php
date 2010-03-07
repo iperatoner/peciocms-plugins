@@ -23,10 +23,10 @@ function do_actions() {
     if (isset($_GET['action']) && !empty($_GET['action'])) {
         if ($_GET['action'] == 'save-templates') {
             if (isset($_POST['list_wrapper_template']) && isset($_POST['list_element_template'])) {
-                if (file_put_contents(
+                if (@file_put_contents(
                         PLUGIN_PATH . $plugin->get_directory_name() . '/templates/list-wrapper.tpl', 
                         stripslashes($_POST['list_wrapper_template'])) &&         
-                    file_put_contents(
+                    @file_put_contents(
                         PLUGIN_PATH . $plugin->get_directory_name() . '/templates/list-element.tpl', 
                         stripslashes($_POST['list_element_template']))) {
 
