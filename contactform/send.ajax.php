@@ -27,23 +27,18 @@ if (isset($_POST['cf_name']) && isset($_POST['cf_email']) && isset($_POST['cf_su
 
                 $website_name = $pec_settings->get_sitename_main();
 
-                $email_text  = 
-"
-Hi,
+                // MAIL TEXT
+                $email_text = $pec_localization->get('PLUGIN_CONTACTFORM_MAIL_TEXT');
 
-$sender_name <$sender_email> has sent you a message from you website \"$website_name\".
+                $email_text = str_replace('{%SENDER_NAME%}', $sender_name, $email_text);
+                $email_text = str_replace('{%SENDER_EMAIL%}', $sender_email, $email_text);
+                $email_text = str_replace('{%WEBSITE_NAME%}', $website_name, $email_text);
+                $email_text = str_replace('{%SENDER_SUBJ%}', $sender_subject, $email_text);
+                $email_text = str_replace('{%SENDER_MSG%}', $sender_message, $email_text);
 
---------
-Subject: $sender_subject
-
-$sender_message
---------
-
-Kind regards,
-Your Server
-";
-
-                $email_subject = 'Message from ' . $sender_name;
+                // MAIL SUBJECT
+                $email_subject = $pec_localization->get('PLUGIN_CONTACTFORM_MAIL_SUBJ');
+                $email_subject = str_replace('{%SENDER_NAME%}', $sender_name, $email_subject);
 
                 try {
                     mail($contactform->get_email(), $email_subject, $email_text);
@@ -51,7 +46,7 @@ Your Server
                 catch (Exception $e) {                
                     $info = get_intern_template(message_tpl_file(MESSAGE_WARNING));
                     $info = str_replace('{%TITLE%}', 'Error', $info);
-                    $info = str_replace('{%CONTENT%}', 'An error occurrec while sending your message.', $info);
+                    $info = str_replace('{%CONTENT%}', 'An error occurred while sending your message.', $info);
                     die($info);
                 }
 

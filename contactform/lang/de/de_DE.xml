@@ -1,37 +1,37 @@
 <localestring id="PLUGIN_CONTACTFORM">
-    <t>Contactform</t>
+    <t>Kontaktformular</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CONTACTFORMS">
-    <t>Contactforms</t>
+    <t>Kontaktformulare</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CREATE">
-    <t>Create Contactform</t>
+    <t>Kontaktformular erstellen</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_EDIT">
-    <t>Edit Contactform</t>
+    <t>Kontaktformular bearbeiten</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_EMAIL">
-    <t>Email</t>
+    <t>E-Mail</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_REALLY_REMOVE">
-    <t>Do you really want to remove this contactform?</t>
+    <t>Möchten Sie dieses Kontaktformular wirklich löschen?</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_REALLY_REMOVE_SELECTED">
-    <t>Do you really want to remove the selected contactforms?</t>
+    <t>Möchten Sie die ausgewählten Kontaktformulare wirklich löschen?</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_VARIABLE_HINT">
-    <t>The variable of this plugin is {%PLUGIN_VARIABLE%}</t>
+    <t>Die Variable des Kontaktformular-Plugins ist {%PLUGIN_VARIABLE%}</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CREATE_NEW">
-    <t>Create new Contactform</t>
+    <t>neues Kontaktformular erstellen</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CF_NAME">
@@ -39,40 +39,40 @@
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CF_EMAIL">
-    <t>Email</t>
+    <t>E-Mail</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CF_SUBJ">
-    <t>Subject</t>
+    <t>Betreff</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CF_MSG">
-    <t>Message</t>
+    <t>Nachricht</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CF_SEND">
-    <t>Send</t>
+    <t>Senden</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_CF_MUST_ENABLE_JS">
-    <t>Javascript needs to be enabled if you want to send a message.</t>
+    <t>Sie müssen Javascript aktivieren, um das Kontaktformular nutzen zu können.</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_MAIL_SUBJ">
-    <t>Message from {%SENDER_NAME%}</t>
+    <t>Nachricht von {%SENDER_NAME%}</t>
 </localestring>
 
 <localestring id="PLUGIN_CONTACTFORM_MAIL_TEXT">
     <t>Hi,
 
-{%SENDER_NAME%} ({%SENDER_EMAIL%}) has sent you a message from you website \"{%WEBSITE_NAME%}\".
+{%SENDER_NAME%} ({%SENDER_EMAIL%}) hat Ihnen eine Nachricht von Ihrer Website \"{%WEBSITE_NAME%}\" geschickt.
 
 --------
-Subject: {%SENDER_SUBJ%}
+Betreff: {%SENDER_SUBJ%}
 
 {%SENDER_MSG%}
 --------
 
-Kind regards,
-Your Server</t>
+Mit freundlichen Grüßen,
+Ihr Server</t>
 </localestring>

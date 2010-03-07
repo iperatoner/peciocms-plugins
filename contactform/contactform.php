@@ -5,9 +5,9 @@ class ContactformPlugin extends PecAbstractPlugin {
     function __construct($plugin_meta, $site_view, $sub_site_view) {
         parent::__construct($plugin_meta, $site_view, $sub_site_view);
 
-        require_once(PLUGIN_PATH . $this->plugin_meta->get_directory_name() . '/classes/contactform.class.php');
+        require_once($this->plugin_meta->get_directory_path() . 'classes/contactform.class.php');
 
-        $this->contactform_template = file_get_contents(PLUGIN_PATH . $this->plugin_meta->get_directory_name() . '/templates/contactform.tpl');
+        $this->contactform_template = file_get_contents($this->plugin_meta->get_directory_path() . 'templates/contactform.tpl');
     }
     
     public function run($var_data='') {
@@ -17,11 +17,19 @@ class ContactformPlugin extends PecAbstractPlugin {
 
             $contactform_html = str_replace(
                 '{%AJAX_SEND_FILE_URL%}', 
-                pec_root_path(false) . 'pec_plugins/' . $this->plugin_meta->get_directory_name() . '/send.ajax.php',
+                $this->plugin_meta->get_directory_path(false) . 'send.ajax.php',
                 $this->contactform_template
             );
             $contactform_html = str_replace('{%ID%}', $contactform->get_id(), $contactform_html);
             $contactform_html = str_replace('{%PLUGIN_DIRECTORY%}', $this->plugin_meta->get_directory_name(), $contactform_html);
+            
+            // Replace locale strings
+            $contactform_html = str_replace('{%CF_NAME%}', $this->localization->get('PLUGIN_CONTACTFORM_CF_NAME'), $contactform_html);
+            $contactform_html = str_replace('{%CF_EMAIL%}', $this->localization->get('PLUGIN_CONTACTFORM_CF_EMAIL'), $contactform_html);
+            $contactform_html = str_replace('{%CF_SUBJ%}', $this->localization->get('PLUGIN_CONTACTFORM_CF_SUBJ'), $contactform_html);
+            $contactform_html = str_replace('{%CF_MSG%}', $this->localization->get('PLUGIN_CONTACTFORM_CF_MSG'), $contactform_html);
+            $contactform_html = str_replace('{%CF_SEND%}', $this->localization->get('PLUGIN_CONTACTFORM_CF_SEND'), $contactform_html);
+            $contactform_html = str_replace('{%CF_MUST_ENABLE_JS%}', $this->localization->get('PLUGIN_CONTACTFORM_CF_MUST_ENABLE_JS'), $contactform_html);
         }
         else {
             $contactform_html = '';
@@ -30,7 +38,7 @@ class ContactformPlugin extends PecAbstractPlugin {
         return $contactform_html;    }
     
     public function head_data() {
-        return '<script type="text/javascript" src="'. pec_root_path(false) . 'pec_plugins/' . $this->plugin_meta->get_directory_name() . '/js/ajax-send.js"></script>';
+        return '<script type="text/javascript" src="'. $this->plugin_meta->get_directory_path(false) . '/js/ajax-send.js"></script>';
     }
     
 }
