@@ -8,9 +8,13 @@ class PHPCodeInclusionPlugin extends PecAbstractPlugin {
     }
     
     public function run($var_data='') {
+        // This variable may be overridden by what's in the var data
+        $output = '';
+        
         eval($var_data);
         
-        return '';    }
+        return $output;
+    }
     
     public function head_data() {
         return '';
