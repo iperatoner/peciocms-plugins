@@ -34,7 +34,10 @@ function view_default() {
     $area_data['content'] = '
             With this plugin you can easily insert urls of pecio objects into your content.<br /><br />
             
-            The variable for this plugin is ' . $plugin->get_property('variable') . '<br />
+            The variable for this plugin is <strong>' . $plugin->get_property('variable') . '</strong><br /><br />
+            
+            
+            <h3 style="padding-left: 0px;">Usage:</h3>
             In most cases you have to pass two arguments to the variable:
             <ol>
                 <li>Object type, e.g. article</li>
@@ -42,9 +45,9 @@ function view_default() {
             </ol><br />
             
             <strong>Example:</strong> {%' . $plugin->get_property('variable') . '-(article,6)%}
-            <br />
+            <br /><br />
             
-            But if you want to insert a url that doesn\'t need any IDs (e.g. the home url), you only have to pass the object type.<br />
+            But if you want to insert a url that doesn\'t need any IDs (e.g. the home url), you only have to pass the object type.<br /><br />
             
             
             <h3 style="padding-left: 0px;">Possible object types:</h3>

@@ -59,7 +59,7 @@ class TagCloudPlugin extends PecAbstractPlugin {
             }
 
             $tag_cloud_html .= 
-            '<a href="' . create_blogtag_url($t, false, $home) . '" style="font-size: ' . $font_size . 'pt;">' . $t->get_name() . '</a> ';
+            '<a href="' . create_blogtag_url($t, false, $home) . '" style="font-size: ' . $font_size . 'pt;">' . $t->get_name() . '</a> &nbsp; ';
         }
         
         return $tag_cloud_html . '</div>';    }

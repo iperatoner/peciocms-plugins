@@ -25,7 +25,7 @@ class PecioUrlInsertionPlugin extends PecAbstractPlugin {
             case 'post':
                 $post = PecBlogPost::load('id', $id);
                 $url = create_blogpost_url($post);
-                break
+                break;
                 
             case 'blog':
                 $url = create_blog_url();
