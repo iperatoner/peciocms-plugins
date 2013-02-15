@@ -2,8 +2,8 @@
 
 class TagCloudPlugin extends PecAbstractPlugin {
     
-    function __construct($plugin_meta, $site_view, $sub_site_view) {
-        parent::__construct($plugin_meta, $site_view, $sub_site_view);
+    function __construct() {
+        parent::__construct();
 
         $this->min_font_size = 7;
         $this->max_font_size = 28;
@@ -44,7 +44,9 @@ class TagCloudPlugin extends PecAbstractPlugin {
         // maximum number of posts that are available
         $max_post_count = count(PecBlogPost::load(false, false, "WHERE post_status='1'"));
 
-        foreach ($tags as $t) {
+        for ($i=0; $i<$tag_count; ++$i) {
+            $t =& $tags[$i];
+            
             // number of posts that have the current tag
             $post_count = count(PecBlogPost::load('tag', $t, "WHERE post_status='1'"));
 
@@ -62,7 +64,8 @@ class TagCloudPlugin extends PecAbstractPlugin {
             '<a href="' . create_blogtag_url($t, false, $home) . '" style="font-size: ' . $font_size . 'pt;">' . $t->get_name() . '</a> &nbsp; ';
         }
         
-        return $tag_cloud_html . '</div>';    }
+        return $tag_cloud_html . '</div>';
+    }
     
     public function head_data() {
         return '';

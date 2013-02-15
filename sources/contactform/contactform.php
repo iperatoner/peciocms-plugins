@@ -2,17 +2,18 @@
 
 class ContactformPlugin extends PecAbstractPlugin {
     
-    function __construct($plugin_meta, $site_view, $sub_site_view) {
-        parent::__construct($plugin_meta, $site_view, $sub_site_view);
-
-        require_once($this->plugin_meta->get_directory_path() . 'classes/contactform.class.php');
-
-        $this->contactform_template = file_get_contents($this->plugin_meta->get_directory_path() . 'templates/contactform.tpl');
+    function __construct() {
+        parent::__construct();
     }
     
     public function run($var_data='') {
+    
+        require_once($this->plugin_meta->get_directory_path() . 'classes/contactform.class.php');
         
         if (Contactform::exists('id', $var_data)) {
+
+            $this->contactform_template = file_get_contents($this->plugin_meta->get_directory_path() . 'templates/contactform.tpl');
+        
             $contactform = Contactform::load('id', $var_data);
 
             $contactform_html = str_replace(
@@ -35,7 +36,8 @@ class ContactformPlugin extends PecAbstractPlugin {
             $contactform_html = '';
         }
         
-        return $contactform_html;    }
+        return $contactform_html;
+    }
     
     public function head_data() {
         return '<script type="text/javascript" src="'. $this->plugin_meta->get_directory_path(false) . '/js/ajax-send.js"></script>';
